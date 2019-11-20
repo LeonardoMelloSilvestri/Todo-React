@@ -1,14 +1,20 @@
 import React, { Component } from 'react'
 import Todos from './Components/Todos.js'
 import AddTodo from './Components/AddTodo.js'
+import axios from 'axios'
 
 export default class App extends Component {
   state = {
-    todos: [
-      {id: 1, content: 'Acordar cedo'},
-      {id: 2, content: 'Arrumar a casa'},
-      {id: 3, content: 'Tomar café'}
-    ]
+    todos: [ ]
+  }
+
+  componentDidMount() {
+    axios.get('https://jsonplaceholder.typicode.com/todos')
+      .then(res => {
+        this.setState({
+          todos: res.data.slice(0, 10)
+        })
+      })
   }
 
   addTodo = (todo) => {

@@ -3,7 +3,7 @@ declare var $: any
 
 export default class AddTodo extends Component {
   state = {
-    content: ''
+    title: ''
   }
 
   onChange = (e) => {
@@ -14,11 +14,11 @@ export default class AddTodo extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    if(this.state.content !== '') {
+    if(this.state.title !== '') {
       this.props.addTodo(this.state);
       $('#newTodoModal').modal('toggle');
       this.setState({
-        content: ''
+        title: ''
       })
     } else {
       alert('O campo não pode estar vazio!');
@@ -43,7 +43,7 @@ export default class AddTodo extends Component {
               <div className="modal-body">
                 <form onSubmit={this.onSubmit}>
                   <div className="form-group">
-                    <input onChange={this.onChange} value={this.state.content} type="text" id="content" className="form-control" placeholder="Ex: Compra pães" />
+                    <input onChange={this.onChange} value={this.state.title} type="text" id="title" className="form-control" placeholder="Ex: Compra pães" />
                   </div>
                 </form>
               </div>
